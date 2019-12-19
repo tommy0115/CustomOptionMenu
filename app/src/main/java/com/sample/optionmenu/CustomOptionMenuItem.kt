@@ -9,6 +9,10 @@ import android.widget.TextView
 
 typealias NotifyClickEvent = ()-> Unit
 
+/**
+ * 커스텀 옵션 메뉴의 각 아이템을 정의한 클래스
+ * @author tmkwon
+ */
 class CustomOptionMenuItem : FrameLayout {
 
     val view: View
@@ -42,13 +46,6 @@ class CustomOptionMenuItem : FrameLayout {
             view.findViewById<ImageView>(R.id.option_menu_icon).setImageResource(icon)
             view.findViewById<TextView>(R.id.option_menu_text).text = text
         }
-
-    enum class OptionMenuType {
-        NONE,
-        COPY,
-        CUT,
-        PASTE
-    }
 
     var notifyClickEvent: NotifyClickEvent? = null
 

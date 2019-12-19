@@ -9,9 +9,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 
+/**
+ * 커스텀 옵션 아이템을 추가, 위치, 기능들을 관리 하고 보여주는 클래스
+ *
+ * @author tmkwon
+ */
 class CustomOptionMenuWidget : LinearLayout {
 
+
     companion object {
+        /**
+         * 커스텀 뷰 위젯 생성 함수
+         *
+         * @ param Activity 액티비티 내에 배경 되는 뷰를 찾기 위한 파라미터
+         * @ param Int 위치 또는 클릭을 위한 뷰의 아이디 지정
+         * @ return CustomOptionMenuWidget, 뷰를 찾지 못하면 null 을 반환
+         */
         fun createCustomOptionMenuWidget(
             activity: Activity,
             optionIconResId: Int
@@ -28,9 +41,9 @@ class CustomOptionMenuWidget : LinearLayout {
         }
     }
 
-    val optionMenuItems: MutableList<CustomOptionMenuItem> = mutableListOf()
-    val dependenciesView: View
-    val baseView: ViewGroup
+    private val optionMenuItems: MutableList<CustomOptionMenuItem> = mutableListOf()
+    private val dependenciesView: View // 기준이 되는 위치의 아이콘 뷰
+    private val baseView: ViewGroup // 배경이 되는 뷰그룹
 
     constructor(context: Context?, dependenciesView: View, baseView: ViewGroup) : super(context) {
         this.dependenciesView = dependenciesView
@@ -72,7 +85,7 @@ class CustomOptionMenuWidget : LinearLayout {
         attachHideOptionMenuTouchListener(baseView)
     }
 
-    fun addItem(type: CustomOptionMenuItem.OptionMenuType, clickListener: OnClickListener?) {
+    fun addItem(type: OptionMenuType, clickListener: OnClickListener?) {
         val item = CustomOptionMenuItem(context, type).apply {
             this.setOnClickListener {
                 clickListener?.onClick(it)
@@ -110,7 +123,7 @@ class CustomOptionMenuWidget : LinearLayout {
         optionMenuItems.removeAt(index)
     }
 
-    fun getItem(type: CustomOptionMenuItem.OptionMenuType): CustomOptionMenuItem? {
+    fun getItem(type: OptionMenuType): CustomOptionMenuItem? {
         for (i in 0 until optionMenuItems.size) {
             if (optionMenuItems.get(i).type == type) {
                 return optionMenuItems.get(i)

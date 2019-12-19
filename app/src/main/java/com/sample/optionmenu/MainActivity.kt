@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -19,14 +20,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         customOptionMenuWidget = CustomOptionMenuWidget.createCustomOptionMenuWidget(this, R.id.title_right_btn)
-        customOptionMenuWidget!!.addItem(CustomOptionMenuItem.OptionMenuType.COPY, View.OnClickListener {
-
+        customOptionMenuWidget!!.addItem(OptionMenuType.COPY, View.OnClickListener {
+            Toast.makeText(this, "COPY", Toast.LENGTH_SHORT).show()
         })
-        customOptionMenuWidget!!.addItem(CustomOptionMenuItem.OptionMenuType.CUT, View.OnClickListener {
-
+        customOptionMenuWidget!!.addItem(OptionMenuType.CUT, View.OnClickListener {
+            Toast.makeText(this, "CUT", Toast.LENGTH_SHORT).show()
         })
-        customOptionMenuWidget!!.addItem(CustomOptionMenuItem.OptionMenuType.PASTE, View.OnClickListener {
-
+        customOptionMenuWidget!!.addItem(OptionMenuType.PASTE, View.OnClickListener {
+            Toast.makeText(this, "PASTE", Toast.LENGTH_SHORT).show()
         })
 
         optionMenuFold.setOnClickListener {
